@@ -2,7 +2,7 @@ package mydrinkshop.domain;
 
 import java.util.List;
 
-public class Reteta {
+public class Reteta implements IEntity<Integer> {
 
     private int id;
     private List<IngredientReteta> ingrediente;
@@ -17,7 +17,7 @@ public class Reteta {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

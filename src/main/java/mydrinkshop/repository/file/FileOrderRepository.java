@@ -20,11 +20,6 @@ public class FileOrderRepository
     }
 
     @Override
-    protected Integer getId(Order entity) {
-        return entity.getId();
-    }
-
-    @Override
     protected Order extractEntity(String line) {
 
         // Format: id,productId:qty|productId:qty,total

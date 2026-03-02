@@ -1,15 +1,16 @@
 package mydrinkshop.repository.file;
 
+import mydrinkshop.domain.IEntity;
 import mydrinkshop.repository.AbstractRepository;
 
 import java.io.*;
 
-public abstract class FileAbstractRepository<ID, E>
+public abstract class FileAbstractRepository<ID, E extends IEntity<ID>>
         extends AbstractRepository<ID, E> {
 
     protected String fileName;
 
-    public FileAbstractRepository(String fileName) {
+    protected FileAbstractRepository(String fileName) {
         this.fileName = fileName;
         //loadFromFile();
     }

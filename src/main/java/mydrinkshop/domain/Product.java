@@ -1,6 +1,6 @@
 package mydrinkshop.domain;
 
-public class Product {
+public class Product implements IEntity<Integer> {
 
     private int id;
     private String nume;
@@ -18,7 +18,7 @@ public class Product {
         this.tip = tip;
     }
 
-    public int getId() { return id; }
+    public Integer getId() { return id; }
     public String getNume() { return nume; }
     public double getPret() { return pret; }
     public CategorieBautura getCategorie() { return categorie; }

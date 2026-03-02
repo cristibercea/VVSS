@@ -50,7 +50,7 @@ public class DrinkShopController {
 
     private ObservableList<Product> productList = FXCollections.observableArrayList();
     private ObservableList<Reteta> retetaList = FXCollections.observableArrayList();
-    private ObservableList<IngredientReteta> newRetetaList = FXCollections.observableArrayList();
+    private ObservableList<IngredientReteta> newRetetaIngredienteList = FXCollections.observableArrayList();
     private ObservableList<OrderItem> currentOrderItems = FXCollections.observableArrayList();
 
     private Order currentOrder = new Order(1);
@@ -87,7 +87,7 @@ public class DrinkShopController {
 
         colNewIngredName.setCellValueFactory(new PropertyValueFactory<>("denumire"));
         colNewIngredCant.setCellValueFactory(new PropertyValueFactory<>("cantitate"));
-        newRetetaTable.setItems(newRetetaList);
+        newRetetaTable.setItems(newRetetaIngredienteList);
 
         // CURRENT ORDER TABLE
         colOrderProdName.setCellValueFactory(data -> {
@@ -115,7 +115,7 @@ public class DrinkShopController {
 
         if (r == null) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Error");
+            alert.setTitle("Attention!");
             alert.setHeaderText("Selectati o reteta pentru care adugati un produs");
             alert.showAndWait();
             return;
@@ -167,21 +167,21 @@ public class DrinkShopController {
     // ---------- RETETA NOUA ----------
     @FXML
     private void onAddNewIngred() {
-        newRetetaList.add(new IngredientReteta(txtNewIngredName.getText(),
+        newRetetaIngredienteList.add(new IngredientReteta(txtNewIngredName.getText(),
                 Double.parseDouble(txtNewIngredCant.getText())));
     }
 
     @FXML
     private void onDeleteNewIngred() {
         IngredientReteta sel = newRetetaTable.getSelectionModel().getSelectedItem();
-        if (sel != null) newRetetaList.remove(sel);
+        if (sel != null) newRetetaIngredienteList.remove(sel);
     }
 
     @FXML
     private void onAddNewReteta() {
-        Reteta r = new Reteta(service.getAllRetete().size()+1, new ArrayList<>(newRetetaList));
+        Reteta r = new Reteta(service.getAllRetete().size()+1, new ArrayList<>(newRetetaIngredienteList));
         service.addReteta(r);
-        newRetetaList.clear();
+        newRetetaIngredienteList.clear();
         initData();
     }
 

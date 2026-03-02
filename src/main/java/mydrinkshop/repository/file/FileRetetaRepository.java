@@ -16,11 +16,6 @@ public class FileRetetaRepository
     }
 
     @Override
-    protected Integer getId(Reteta entity) {
-        return entity.getId();
-    }
-
-    @Override
     protected Reteta extractEntity(String line) {
 
         String[] elems = line.split(",");

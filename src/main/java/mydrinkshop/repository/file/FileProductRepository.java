@@ -13,11 +13,6 @@ public class FileProductRepository
     }
 
     @Override
-    protected Integer getId(Product entity) {
-        return entity.getId();
-    }
-
-    @Override
     protected Product extractEntity(String line) {
 
         String[] elems = line.split(",");

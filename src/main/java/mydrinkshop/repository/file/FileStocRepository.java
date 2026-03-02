@@ -11,11 +11,6 @@ public class FileStocRepository
     }
 
     @Override
-    protected Integer getId(Stoc entity) {
-        return entity.getId();
-    }
-
-    @Override
     protected Stoc extractEntity(String line) {
         String[] elems = line.split(";");
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order implements Serializable {
+public class Order implements Serializable, IEntity<Integer> {
 
     private int id;
     private List<OrderItem> items;
@@ -22,7 +22,7 @@ public class Order implements Serializable {
         this.totalPrice = totalPrice;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -57,10 +57,6 @@ public class Order implements Serializable {
                 ", items=" + items +
                 ", totalPrice=" + totalPrice +
                 '}';
-    }
-
-    public double getTotal() {
-        return totalPrice;
     }
 
     public void computeTotalPrice() {

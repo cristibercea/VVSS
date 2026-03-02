@@ -58,7 +58,7 @@ public class StocService {
 
         for (IngredientReteta e : reteta.getIngrediente()) {
             String ingredient = e.getDenumire();
-            double necesar = e.getCantitate();
+            double necesar = e.getCantitate();//REDUNDANT
 
             List<Stoc> ingredienteStoc = stocRepo.findAll().stream()
                     .filter(s -> s.getIngredient().equalsIgnoreCase(ingredient))

@@ -1,11 +1,13 @@
 package mydrinkshop.repository;
 
+import mydrinkshop.domain.IEntity;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.StreamSupport;
 
-public abstract class AbstractRepository<ID, E>
+public abstract class AbstractRepository<ID, E extends IEntity<ID>>
         implements Repository<ID, E> {
 
     protected Map<ID, E> entities = new HashMap<>();
@@ -17,14 +19,14 @@ public abstract class AbstractRepository<ID, E>
 
     @Override
     public List<E> findAll() {
-        return (List<E>)StreamSupport.stream(entities.values().spliterator(), false).toList();
+        return StreamSupport.stream(entities.values().spliterator(), false).toList();
 //                    .collect(Collectors.toList());
         // return (List<E>) entities.values();
     }
 
     @Override
     public E save(E entity) {
-        entities.put(getId(entity), entity);
+        entities.put(entity.getId(), entity);
         return entity;
     }
 
@@ -35,9 +37,7 @@ public abstract class AbstractRepository<ID, E>
 
     @Override
     public E update(E entity) {
-        entities.put(getId(entity), entity);
+        entities.put(entity.getId(), entity);
         return entity;
     }
-
-    protected abstract ID getId(E entity);
 }

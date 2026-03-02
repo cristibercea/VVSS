@@ -1,6 +1,6 @@
 package mydrinkshop.domain;
 
-public class Stoc {
+public class Stoc implements IEntity<Integer> {
 
     private int id;
     private String ingredient;
@@ -15,7 +15,7 @@ public class Stoc {
     }
 
     // --- getters ---
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
