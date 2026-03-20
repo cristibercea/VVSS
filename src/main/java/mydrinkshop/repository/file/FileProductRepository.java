@@ -3,12 +3,13 @@ package mydrinkshop.repository.file;
 import mydrinkshop.domain.Product;
 import mydrinkshop.domain.CategorieBautura;
 import mydrinkshop.domain.TipBautura;
+import mydrinkshop.service.validator.ProductValidator;
 
 public class FileProductRepository
         extends FileAbstractRepository<Integer, Product> {
 
     public FileProductRepository(String fileName) {
-        super(fileName);
+        super(fileName, new ProductValidator());
         loadFromFile();
     }
 

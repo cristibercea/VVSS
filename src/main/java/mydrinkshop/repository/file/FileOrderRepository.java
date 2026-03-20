@@ -4,6 +4,7 @@ import mydrinkshop.domain.Order;
 import mydrinkshop.domain.OrderItem;
 import mydrinkshop.domain.Product;
 import mydrinkshop.repository.Repository;
+import mydrinkshop.service.validator.OrderValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class FileOrderRepository
     private Repository<Integer, Product> productRepository;
 
     public FileOrderRepository(String fileName, Repository<Integer, Product> productRepository) {
-        super(fileName);
+        super(fileName, new OrderValidator());
         this.productRepository = productRepository;
         loadFromFile();
     }

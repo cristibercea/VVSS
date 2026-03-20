@@ -1,12 +1,13 @@
 package mydrinkshop.repository.file;
 
 import mydrinkshop.domain.Stoc;
+import mydrinkshop.service.validator.StocValidator;
 
 public class FileStocRepository
         extends FileAbstractRepository<Integer, Stoc> {
 
     public FileStocRepository(String fileName) {
-        super(fileName);
+        super(fileName, new StocValidator());
         loadFromFile();
     }
 

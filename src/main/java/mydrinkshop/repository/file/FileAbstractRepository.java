@@ -2,6 +2,7 @@ package mydrinkshop.repository.file;
 
 import mydrinkshop.domain.IEntity;
 import mydrinkshop.repository.AbstractRepository;
+import mydrinkshop.service.validator.Validator;
 
 import java.io.*;
 
@@ -9,9 +10,11 @@ public abstract class FileAbstractRepository<ID, E extends IEntity<ID>>
         extends AbstractRepository<ID, E> {
 
     protected String fileName;
+    protected Validator<E> validator;
 
-    protected FileAbstractRepository(String fileName) {
+    protected FileAbstractRepository(String fileName, Validator<E> validator) {
         this.fileName = fileName;
+        this.validator = validator;
         //loadFromFile();
     }
 
@@ -44,6 +47,7 @@ public abstract class FileAbstractRepository<ID, E extends IEntity<ID>>
 
     @Override
     public E save(E entity) {
+        validator.validate(entity);
         E e = super.save(entity);
         writeToFile();
         return e;

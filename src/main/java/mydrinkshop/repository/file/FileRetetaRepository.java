@@ -2,6 +2,7 @@ package mydrinkshop.repository.file;
 
 import mydrinkshop.domain.IngredientReteta;
 import mydrinkshop.domain.Reteta;
+import mydrinkshop.service.validator.RetetaValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class FileRetetaRepository
         extends FileAbstractRepository<Integer, Reteta> {
 
     public FileRetetaRepository(String fileName) {
-        super(fileName);
+        super(fileName, new RetetaValidator());
         loadFromFile();
     }
 
