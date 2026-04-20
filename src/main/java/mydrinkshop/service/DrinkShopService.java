@@ -5,6 +5,7 @@ import mydrinkshop.export.CsvExporter;
 import mydrinkshop.receipt.ReceiptGenerator;
 import mydrinkshop.reports.DailyReportService;
 import mydrinkshop.repository.Repository;
+import mydrinkshop.service.validator.StocValidator;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class DrinkShopService {
         this.productService = new ProductService(productRepo);
         this.orderService = new OrderService(orderRepo, productRepo);
         this.retetaService = new RetetaService(retetaRepo);
-        this.stocService = new StocService(stocRepo);
+        this.stocService = new StocService(stocRepo, new StocValidator());
         this.reportService = new DailyReportService(orderRepo);
     }
 

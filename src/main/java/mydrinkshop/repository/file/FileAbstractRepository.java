@@ -62,6 +62,7 @@ public abstract class FileAbstractRepository<ID, E extends IEntity<ID>>
 
     @Override
     public E update(E entity) {
+        validator.validate(entity);
         E e = super.update(entity);
         writeToFile();
         return e;

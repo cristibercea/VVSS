@@ -6,6 +6,7 @@ import mydrinkshop.domain.Stoc;
 import mydrinkshop.repository.Repository;
 import mydrinkshop.repository.file.FileRetetaRepository;
 import mydrinkshop.repository.file.FileStocRepository;
+import mydrinkshop.service.validator.StocValidator;
 import org.junit.jupiter.api.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ class StocServiceTest {
         reteta = new Reteta(2000, List.of());
         stocRepo = new FileStocRepository("data/stocuri.txt");
         retetaRepository = new FileRetetaRepository("data/retete.txt");
-        stocService = new StocService(stocRepo);
+        stocService = new StocService(stocRepo, new StocValidator());
         cantitate_cafea = stocRepo.findOne(1).getCantitate();
         cantitate_cafea_min = stocRepo.findOne(1).getStocMinim();
         cantitate_apa = stocRepo.findOne(2).getCantitate();
@@ -72,12 +73,12 @@ class StocServiceTest {
     @Order(3)
     void test_WBT_consuma_invalid_stoc_vid() {
         stocRepo = new FileStocRepository(dummy_stoc_file);
-        stocService = new StocService(stocRepo);
+        stocService = new StocService(stocRepo, new StocValidator());
         reteta.setIngrediente(List.of(ingredientReteta1,ingredientReteta2));
         stocService.consuma(reteta);
         assertEquals(0, stocRepo.findAll().size());
         stocRepo = new FileStocRepository("data/stocuri.txt");
-        stocService = new StocService(stocRepo);
+        stocService = new StocService(stocRepo, new StocValidator());
     }
 
     @Test
